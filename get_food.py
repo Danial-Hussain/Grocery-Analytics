@@ -15,6 +15,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from product import Product
 from product import Base
+import urllib.request
 
 
 def get_categories(categories):
@@ -170,6 +171,12 @@ def load_to_database(categories):
 					tot_calories = re.findall(r"(?<=Calories )[\d\|.]+", values)[0]
 				except:
 					tot_calories = None
+				try:
+					img = driver.find_elements_by_css_selector(".ImagePreviewer-Thumbnail--lEL4J:nth-child(1)")[0].get_attribute('style')
+					img = img.split('url("')[1].split("\");")[0]
+					blobData = get_blob(img)
+				except:
+					blobData = None
 
 				# Create a new Product
 				product = Product(
@@ -181,7 +188,8 @@ def load_to_database(categories):
 					fat = float(tot_fat),
 					carbohydrates = float(tot_carbs),
 					protein = float(tot_protein),
-					cholesterol = float(tot_cholesterol)
+					cholesterol = float(tot_cholesterol),
+					image = float(blobData)
 					)
 
 				# Add the product to the database
@@ -191,8 +199,18 @@ def load_to_database(categories):
 	#Close session
 	session.close()
 
-
-
+def get_blob(URL):
+	# Open url and save to file
+	with urllib.request.urlopen(URL) as url:
+	  with open('temp.jpg', 'wb') as f:
+	  	f.write(url.read())
+	#Read file data
+	with open('temp.jpg', 'rb') as file:
+		blobData = file.read()
+	# Remove file
+	os.remove('temp.jpg')
+	# Return blob data
+	return blobData
 
 
 if __name__ == "__main__":
@@ -239,8 +257,13 @@ if __name__ == "__main__":
 	print("Fat {}".format(tot_fat))
 
 	img = driver.find_elements_by_css_selector(".ImagePreviewer-Thumbnail--lEL4J:nth-child(1)")[0].get_attribute('style')
-	img = img.split('url("')[1].split(");")[0]
-	print(img)
+	img = img.split('url("')[1].split("\");")[0]
+
+	blobData = get_blob(img)
+	print(blobData)
+
+	driver.get(img)
+	time.sleep(2)
 	# End the driver session
 	driver.quit()
 
