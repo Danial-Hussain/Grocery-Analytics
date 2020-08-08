@@ -1,5 +1,5 @@
 
-from sqlalchemy import Column, Integer, Numeric, String, ForeignKey
+from sqlalchemy import Column, Integer, Numeric, String, ForeignKey, LargeBinary
 from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
@@ -16,3 +16,4 @@ class Product(Base):
 	carbohydrates = Column('carbohydrates', Numeric)
 	protein = Column('protein', Numeric)
 	cholesterol = Column('cholesterol', Numeric)
+	image = Column('image', LargeBinary)
