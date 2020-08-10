@@ -1,0 +1,120 @@
+{
+    "Produce": [
+        {
+            "Fresh Fruit": "https://products.wholefoodsmarket.com/search?sort=relevance&category=produce&subcategory=produce.fresh-fruit",
+            "Fresh Herbs": "https://products.wholefoodsmarket.com/search?sort=relevance&category=produce&subcategory=produce.fresh-herbs",
+            "Fresh Vegetables": "https://products.wholefoodsmarket.com/search?sort=relevance&category=produce&subcategory=produce.fresh-vegetables"
+        }
+    ],
+    "Dairy & Eggs": [
+        {
+            "Butter & Margarine": "https://products.wholefoodsmarket.com/search?sort=relevance&category=dairy-eggs&subcategory=dairy-eggs.butter-margarine",
+            "Cheese": "https://products.wholefoodsmarket.com/search?sort=relevance&category=dairy-eggs&subcategory=dairy-eggs.cheese",
+            "Dairy Alternatives": "https://products.wholefoodsmarket.com/search?sort=relevance&category=dairy-eggs&subcategory=dairy-eggs.dairy-alternatives",
+            "Eggs": "https://products.wholefoodsmarket.com/search?sort=relevance&category=dairy-eggs&subcategory=dairy-eggs.eggs",
+            "Milk & Cream": "https://products.wholefoodsmarket.com/search?sort=relevance&category=dairy-eggs&subcategory=dairy-eggs.milk-cream",
+            "Yogurt": "https://products.wholefoodsmarket.com/search?sort=relevance&category=dairy-eggs&subcategory=dairy-eggs.yogurt"
+        }
+    ],
+    "Meat": [
+        {
+            "Beef": "https://products.wholefoodsmarket.com/search?sort=relevance&category=meat&subcategory=meat.beef",
+            "Chicken": "https://products.wholefoodsmarket.com/search?sort=relevance&category=meat&subcategory=meat.chicken",
+            "Pork": "https://products.wholefoodsmarket.com/search?sort=relevance&category=meat&subcategory=meat.pork",
+            "Turkey": "https://products.wholefoodsmarket.com/search?sort=relevance&category=meat&subcategory=meat.turkey",
+            "Goat, Lamb, & Veal": "https://products.wholefoodsmarket.com/search?sort=relevance&category=meat&subcategory=meat.goat-lamb-veal",
+            "Bacon": "https://products.wholefoodsmarket.com/search?sort=relevance&category=meat&subcategory=meat.bacon",
+            "Hotdogs & Sausage": "https://products.wholefoodsmarket.com/search?sort=relevance&category=meat&subcategory=meat.hotdogs-sausage",
+            "Game Meats": "https://products.wholefoodsmarket.com/search?sort=relevance&category=meat&subcategory=meat.game-meats",
+            "Meat Alternatives": "https://products.wholefoodsmarket.com/search?sort=relevance&category=meat&subcategory=meat.meat-alternatives"
+        }
+    ],
+    "Prepared Foods": [
+        {
+            "Prepared Meals": "https://products.wholefoodsmarket.com/search?sort=relevance&category=prepared-foods&subcategory=prepared-foods.prepared-meals",
+            "Prepared Soups & Salads": "https://products.wholefoodsmarket.com/search?sort=relevance&category=prepared-foods&subcategory=prepared-foods.prepared-soups-salads"
+        }
+    ],
+    "Pantry Essentials": [
+        {
+            "Baking": "https://products.wholefoodsmarket.com/search?sort=relevance&category=pantry-essentials&subcategory=pantry-essentials.baking",
+            "Canned Goods": "https://products.wholefoodsmarket.com/search?sort=relevance&category=pantry-essentials&subcategory=pantry-essentials.canned-goods",
+            "Cereal": "https://products.wholefoodsmarket.com/search?sort=relevance&category=pantry-essentials&subcategory=pantry-essentials.cereal",
+            "Condiments & Dressings": "https://products.wholefoodsmarket.com/search?sort=relevance&category=pantry-essentials&subcategory=pantry-essentials.condiments-dressings",
+            "Hot Cereal & Pancake Mixes": "https://products.wholefoodsmarket.com/search?sort=relevance&category=pantry-essentials&subcategory=pantry-essentials.hot-cereal-pancake-mixes",
+            "Jam, Jellies & Nut Butters": "https://products.wholefoodsmarket.com/search?sort=relevance&category=pantry-essentials&subcategory=pantry-essentials.jam-jellies-nut-butters",
+            "Pasta & Noodles": "https://products.wholefoodsmarket.com/search?sort=relevance&category=pantry-essentials&subcategory=pantry-essentials.pasta-noodles",
+            "Rice & Grains": "https://products.wholefoodsmarket.com/search?sort=relevance&category=pantry-essentials&subcategory=pantry-essentials.rice-grains",
+            "Sauces": "https://products.wholefoodsmarket.com/search?sort=relevance&category=pantry-essentials&subcategory=pantry-essentials.sauces",
+            "Soups & Broths": "https://products.wholefoodsmarket.com/search?sort=relevance&category=pantry-essentials&subcategory=pantry-essentials.soups-broths",
+            "Spices & Seasonings": "https://products.wholefoodsmarket.com/search?sort=relevance&category=pantry-essentials&subcategory=pantry-essentials.spices-seasonings"
+        }
+    ],
+    "Breads, Rolls, & Bakery": [
+        {
+            "Breads": "https://products.wholefoodsmarket.com/search?sort=relevance&category=breads-rolls-bakery&subcategory=breads-rolls-bakery.breads",
+            "Breakfast Bakery": "https://products.wholefoodsmarket.com/search?sort=relevance&category=breads-rolls-bakery&subcategory=breads-rolls-bakery.breakfast-bakery",
+            "Desserts": "https://products.wholefoodsmarket.com/search?sort=relevance&category=breads-rolls-bakery&subcategory=breads-rolls-bakery.desserts",
+            "Rolls & Buns": "https://products.wholefoodsmarket.com/search?sort=relevance&category=breads-rolls-bakery&subcategory=breads-rolls-bakery.rolls-buns",
+            "Tortillas & Flat Breads": "https://products.wholefoodsmarket.com/search?sort=relevance&category=breads-rolls-bakery&subcategory=breads-rolls-bakery.tortillas-flat-breads"
+        }
+    ],
+    "Supplements": [
+        {
+            "Children's Health": "https://products.wholefoodsmarket.com/search?sort=relevance&category=supplements&subcategory=supplements.children's-health",
+            "Functional Foods": "https://products.wholefoodsmarket.com/search?sort=relevance&category=supplements&subcategory=supplements.functional-foods",
+            "Functional Supplements": "https://products.wholefoodsmarket.com/search?sort=relevance&category=supplements&subcategory=supplements.functional-supplements",
+            "Herbs & Homeopathy": "https://products.wholefoodsmarket.com/search?sort=relevance&category=supplements&subcategory=supplements.herbs-homeopathy",
+            "Specialty Supplements": "https://products.wholefoodsmarket.com/search?sort=relevance&category=supplements&subcategory=supplements.specialty-supplements",
+            "Sports Nutrition & Weight Management": "https://products.wholefoodsmarket.com/search?sort=relevance&category=supplements&subcategory=supplements.sports-nutrition-weight-management",
+            "Vitamins & Minerals": "https://products.wholefoodsmarket.com/search?sort=relevance&category=supplements&subcategory=supplements.vitamins-minerals",
+            "Wellness & Seasonal": "https://products.wholefoodsmarket.com/search?sort=relevance&category=supplements&subcategory=supplements.wellness-seasonal"
+        }
+    ],
+    "Frozen Foods": [
+        {
+            "Frozen Breakfast": "https://products.wholefoodsmarket.com/search?sort=relevance&category=frozen-foods&subcategory=frozen-foods.frozen-breakfast",
+            "Frozen Entr\u00e9es & Appetizers": "https://products.wholefoodsmarket.com/search?sort=relevance&category=frozen-foods&subcategory=frozen-foods.frozen-entr\u00e9es-appetizers",
+            "Frozen Fruits & Vegetables": "https://products.wholefoodsmarket.com/search?sort=relevance&category=frozen-foods&subcategory=frozen-foods.frozen-fruits-vegetables",
+            "Frozen Pizza": "https://products.wholefoodsmarket.com/search?sort=relevance&category=frozen-foods&subcategory=frozen-foods.frozen-pizza",
+            "Ice Cream & Frozen Desserts": "https://products.wholefoodsmarket.com/search?sort=relevance&category=frozen-foods&subcategory=frozen-foods.ice-cream-frozen-desserts"
+        }
+    ],
+    "Snacks, Chips, Salsas, & Dips": [
+        {
+            "Candy & Chocolate": "https://products.wholefoodsmarket.com/search?sort=relevance&category=snacks-chips-salsas-dips&subcategory=snacks-chips-salsas-dips.candy-chocolate",
+            "Chips": "https://products.wholefoodsmarket.com/search?sort=relevance&category=snacks-chips-salsas-dips&subcategory=snacks-chips-salsas-dips.chips",
+            "Cookies": "https://products.wholefoodsmarket.com/search?sort=relevance&category=snacks-chips-salsas-dips&subcategory=snacks-chips-salsas-dips.cookies",
+            "Crackers": "https://products.wholefoodsmarket.com/search?sort=relevance&category=snacks-chips-salsas-dips&subcategory=snacks-chips-salsas-dips.crackers",
+            "Jerky": "https://products.wholefoodsmarket.com/search?sort=relevance&category=snacks-chips-salsas-dips&subcategory=snacks-chips-salsas-dips.jerky",
+            "Nutrition & Granola Bars": "https://products.wholefoodsmarket.com/search?sort=relevance&category=snacks-chips-salsas-dips&subcategory=snacks-chips-salsas-dips.nutrition-granola-bars",
+            "Nuts, Seeds & Dried Fruit": "https://products.wholefoodsmarket.com/search?sort=relevance&category=snacks-chips-salsas-dips&subcategory=snacks-chips-salsas-dips.nuts-seeds-dried-fruit",
+            "Popcorn, Puffs, & Rice Cakes": "https://products.wholefoodsmarket.com/search?sort=relevance&category=snacks-chips-salsas-dips&subcategory=snacks-chips-salsas-dips.popcorn-puffs-rice-cakes",
+            "Salsas, Dips, & Spreads": "https://products.wholefoodsmarket.com/search?sort=relevance&category=snacks-chips-salsas-dips&subcategory=snacks-chips-salsas-dips.salsas-dips-spreads"
+        }
+    ],
+    "Seafood": [
+        {
+            "Fish": "https://products.wholefoodsmarket.com/search?sort=relevance&category=seafood&subcategory=seafood.fish",
+            "Shellfish": "https://products.wholefoodsmarket.com/search?sort=relevance&category=seafood&subcategory=seafood.shellfish"
+        }
+    ],
+    "Beverages": [
+        {
+            "Coffee": "https://products.wholefoodsmarket.com/search?sort=relevance&category=beverages&subcategory=beverages.coffee",
+            "Juice": "https://products.wholefoodsmarket.com/search?sort=relevance&category=beverages&subcategory=beverages.juice",
+            "Kombucha & Tea": "https://products.wholefoodsmarket.com/search?sort=relevance&category=beverages&subcategory=beverages.kombucha-tea",
+            "Soft Drinks": "https://products.wholefoodsmarket.com/search?sort=relevance&category=beverages&subcategory=beverages.soft-drinks",
+            "Sports, Energy & Nutritional Drinks": "https://products.wholefoodsmarket.com/search?sort=relevance&category=beverages&subcategory=beverages.sports-energy-nutritional-drinks",
+            "Tea": "https://products.wholefoodsmarket.com/search?sort=relevance&category=beverages&subcategory=beverages.tea",
+            "Water, Seltzer & Sparkling Water": "https://products.wholefoodsmarket.com/search?sort=relevance&category=beverages&subcategory=beverages.water-seltzer-sparkling-water"
+        }
+    ],
+    "Wine, Beer, & Spirits": [
+        {
+            "Beer": "https://products.wholefoodsmarket.com/search?sort=relevance&category=wine-beer-spirits&subcategory=wine-beer-spirits.beer",
+            "Spirits": "https://products.wholefoodsmarket.com/search?sort=relevance&category=wine-beer-spirits&subcategory=wine-beer-spirits.spirits",
+            "Wine": "https://products.wholefoodsmarket.com/search?sort=relevance&category=wine-beer-spirits&subcategory=wine-beer-spirits.wine"
+        }
+    ]
+}

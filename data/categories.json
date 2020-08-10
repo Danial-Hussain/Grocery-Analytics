@@ -1,0 +1,50 @@
+{
+    "Produce": [
+        "https://products.wholefoodsmarket.com/search?sort=relevance&category=produce",
+        "produce"
+    ],
+    "Dairy & Eggs": [
+        "https://products.wholefoodsmarket.com/search?sort=relevance&category=dairy-eggs",
+        "dairy-eggs"
+    ],
+    "Meat": [
+        "https://products.wholefoodsmarket.com/search?sort=relevance&category=meat",
+        "meat"
+    ],
+    "Prepared Foods": [
+        "https://products.wholefoodsmarket.com/search?sort=relevance&category=prepared-foods",
+        "prepared-foods"
+    ],
+    "Pantry Essentials": [
+        "https://products.wholefoodsmarket.com/search?sort=relevance&category=pantry-essentials",
+        "pantry-essentials"
+    ],
+    "Breads, Rolls, & Bakery": [
+        "https://products.wholefoodsmarket.com/search?sort=relevance&category=breads-rolls-bakery",
+        "breads-rolls-bakery"
+    ],
+    "Supplements": [
+        "https://products.wholefoodsmarket.com/search?sort=relevance&category=supplements",
+        "supplements"
+    ],
+    "Frozen Foods": [
+        "https://products.wholefoodsmarket.com/search?sort=relevance&category=frozen-foods",
+        "frozen-foods"
+    ],
+    "Snacks, Chips, Salsas, & Dips": [
+        "https://products.wholefoodsmarket.com/search?sort=relevance&category=snacks-chips-salsas-dips",
+        "snacks-chips-salsas-dips"
+    ],
+    "Seafood": [
+        "https://products.wholefoodsmarket.com/search?sort=relevance&category=seafood",
+        "seafood"
+    ],
+    "Beverages": [
+        "https://products.wholefoodsmarket.com/search?sort=relevance&category=beverages",
+        "beverages"
+    ],
+    "Wine, Beer, & Spirits": [
+        "https://products.wholefoodsmarket.com/search?sort=relevance&category=wine-beer-spirits",
+        "wine-beer-spirits"
+    ]
+}
