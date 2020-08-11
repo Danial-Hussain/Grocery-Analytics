@@ -1,0 +1,66 @@
+html {
+  height: 100%;
+  width: 100%;
+}
+
+
+
+header {
+  margin: 0 auto;
+  font-family: 'Antic Slab', serif;
+  /*padding: 0 1em 1em 1em;*/
+  overflow: hidden;
+}
+
+.site-header {
+  text-align: center;
+
+}
+
+.navbar {
+  margin: 0;
+  padding: 0;
+  background-color: #ecf0f1;
+  overflow: hidden;
+  margin-bottom: 2em;
+
+}
+
+.profile {
+  display: block;
+
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+
+  border-radius: 50%;
+}
+
+h1{
+  font-family: 'PT Sans', sans-serif;
+  text-align: center;
+  font-size: 5em;
+}
+
+h2{
+  margin-top: 5em;
+  font-family: 'Antic Slab', serif;
+  text-align: center;
+  font-size: 2.5em;
+}
+
+
+p{
+  text-align: center;
+}
+
+
+.input-group.md-form.form-sm.form-2 input {
+  border: 1px solid #bdbdbd;
+  border-top-left-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
+}
+
+.input-group.md-form.form-sm.form-2 input.lime-border {
+  border: 1px solid #cddc39;
+}
