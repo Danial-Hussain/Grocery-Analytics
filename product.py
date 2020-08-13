@@ -10,7 +10,7 @@ class Product(Base):
 	category = Column('category', String)
 	subcategory = Column('subcategory', String)
 	name = Column('name', String, unique = True)
-	serving = Column('name', String)
+	serving = Column('serving', String)
 	calories = Column('calories', Numeric)
 	fat = Column('fat', Numeric)
 	carbohydrates = Column('carbohydrates', Numeric)
