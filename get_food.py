@@ -107,6 +107,8 @@ def load_to_database(categories):
 	# Open json file that has all the data collected from the previous functions
 	with open(os.getcwd()+"\\data\\products.json") as f:
 		categories = json.load(f)
+	# Variables to store quantity of invalid products, products without nutrition information, and products wihtout image
+	invalid, no_nutrition, no_image = 0, 0, 0
 	# Create SQL Database engine
 	engine = create_engine(SQLALCHEMY_DATABASE_URL)
 	Base.metadata.create_all(bind=engine)
@@ -126,57 +128,71 @@ def load_to_database(categories):
 				time.sleep(2)
 				# Check if nutrition info is available, otherwise go to next product
 				try:
-					driver.find_elements_by_css_selector(".Collapsible-Root--3cwwH+ .Collapsible-Root--3cwwH .Collapsible-Title--30gLK")[0].click()
+					if driver.find_elements_by_css_selector(".Collapsible-Root--3cwwH+ .Collapsible-Root--3cwwH .Collapsible-Title--30gLK") != []:
+						driver.find_elements_by_css_selector(".Collapsible-Root--3cwwH+ .Collapsible-Root--3cwwH .Collapsible-Title--30gLK")[0].click()
+					else:
+						driver.find_elements_by_css_selector(".Collapsible-Title--30gLK")[0].click()
 					time.sleep(1)
 				except:
 					print("Product doesn't have nutrition info")
-				
+					no_nutrition += 1
+				# Try to get product name
 				try:
 					p_name = driver.find_elements_by_css_selector(".ProductHeader-Name--1ysBV")[0].text
 				except:
 					continue
-
+					invalid += 1
+				# Try to get the serving size
 				try:
 					serving_size = driver.find_elements_by_css_selector(".Separator__3rdE_+ .NutritionTable-Unbreakable--1UPcX")[0].text
 				except: 
 					serving_size = None
-				
+				# Get the text from nutrition table
 				try:
 					values = driver.find_elements_by_css_selector(".NutritionTable-Root--YcoZx")[0].text
 					values = str.join(" ", values.splitlines())
 				except:
 					print("No nutrition")
-
+				# Extract nutrition information
 				try:
-					tot_fat = re.findall(r"(?<=Total Fat )[\d\|.]+", values)[0]
+					if re.findall(r"(?<=Total Fat )[\d\|.]+", values) != []:
+						tot_fat = re.findall(r"(?<=Total Fat )[\d\|.]+", values)[0]
+					else:
+						tot_fat = None
+
+					if re.findall(r"(?<=Cholesterol )[\d\|.]+", values) != []:
+						tot_cholesterol = re.findall(r"(?<=Cholesterol )[\d\|.]+", values)[0]
+					else:
+						tot_cholesterol = None
+
+					if re.findall(r"(?<=Protein )[\d\|.]+", values) != []:
+						tot_protein = re.findall(r"(?<=Protein )[\d\|.]+", values)[0]
+					else:
+						tot_protein = None
+
+					if re.findall(r"(?<=Total Carbohydrates )[\d\|.]+", values) != []:
+						tot_carbs = re.findall(r"(?<=Total Carbohydrates )[\d\|.]+", values)[0]
+					else:
+						tot_carbs = None
+
+					if re.findall(r"(?<=Calories )[\d\|.]+", values) != []:
+						tot_calories = re.findall(r"(?<=Calories )[\d\|.]+", values)[0]
+					else:
+						tot_calories = None
 				except:
 					tot_fat = None
-
-				try:
-					tot_cholesterol = re.findall(r"(?<=Cholesterol )[\d\|.]+", values)[0]
-				except:
+					tot_calories = None
+					tot_carbs = None
+					tot_protein = None
 					tot_cholesterol = None
 
-				try:
-					tot_protein = re.findall(r"(?<=Protein )[\d\|.]+", values)[0]
-				except: 
-					tot_protein = None
-
-				try:
-					tot_carbs = re.findall(r"(?<=Total Carbohydrates )[\d\|.]+", values)[0]
-				except:
-					tot_carbs = None
-
-				try:
-					tot_calories = re.findall(r"(?<=Calories )[\d\|.]+", values)[0]
-				except:
-					tot_calories = None
 				try:
 					img = driver.find_elements_by_css_selector(".ImagePreviewer-Thumbnail--lEL4J:nth-child(1)")[0].get_attribute('style')
 					img = img.split('url("')[1].split("\");")[0]
 					blobData = get_blob(img)
 				except:
 					blobData = None
+					no_image +=1
 
 				# Create a new Product
 				product = Product(
@@ -194,10 +210,12 @@ def load_to_database(categories):
 
 				# Add the product to the database
 				session.add(product)
-				print(product)
 
 	#Close session
 	session.close()
+	print("The number of invalid products: {}".format(invalid))
+	print('The number of products without nutrition information {}'.format(no_nutrition))
+	print('The number of products without images is {}'.format(no_image))
 
 def get_blob(URL):
 	# Open url and save to file
@@ -225,30 +243,54 @@ if __name__ == "__main__":
 	SQLALCHEMY_DATABASE_URL = "sqlite:///./data/product_data.db"
 
 	# Get the categories of products
-	#get_categories()
+	#get_categories(categories)
 
 	# Get the subcategories of products
-	#get_subcategories()
+	# get_subcategories(categories)
 
 	# Get the products
 	#get_products()
 
+	# Load the data to the database
 	#load_to_database(categories)
-	driver.get("https://products.wholefoodsmarket.com/product/santa-barbara-pistachio-santa-barbara-pistachio-organic-chile-lemon-pistachios-098f33")
+
+	driver.get("https://products.wholefoodsmarket.com/product/meiomi-pinot-noir-bec5d6")
 	time.sleep(2)
-	driver.find_elements_by_css_selector(".Collapsible-Root--3cwwH+ .Collapsible-Root--3cwwH .Collapsible-Title--30gLK")[0].click()
+
+	if driver.find_elements_by_css_selector(".Collapsible-Root--3cwwH+ .Collapsible-Root--3cwwH .Collapsible-Title--30gLK") != []:
+		driver.find_elements_by_css_selector(".Collapsible-Root--3cwwH+ .Collapsible-Root--3cwwH .Collapsible-Title--30gLK")[0].click()
+	else:
+		driver.find_elements_by_css_selector(".Collapsible-Title--30gLK")[0].click()	
+
 	p_name = driver.find_elements_by_css_selector(".ProductHeader-Name--1ysBV")[0].text
 	serving_size = driver.find_elements_by_css_selector(".Separator__3rdE_+ .NutritionTable-Unbreakable--1UPcX")[0].text
 	values = driver.find_elements_by_css_selector(".NutritionTable-Root--YcoZx")[0].text
 	values = str.join(" ", values.splitlines())
 
-	tot_fat = re.findall(r"(?<=Total Fat )[\d\|.]+", values)[0]
-	tot_cholesterol = re.findall(r"(?<=Cholesterol )[\d\|.]+", values)[0]
-	tot_protein = re.findall(r"(?<=Protein )[\d\|.]+", values)[0]
-	tot_carbs = re.findall(r"(?<=Total Carbohydrates )[\d\|.]+", values)[0]
-	tot_calories = re.findall(r"(?<=Calories )[\d\|.]+", values)[0]
+	if re.findall(r"(?<=Total Fat )[\d\|.]+", values) != []:
+		tot_fat = re.findall(r"(?<=Total Fat )[\d\|.]+", values)[0]
+	else:
+		tot_fat = None
+	if re.findall(r"(?<=Cholesterol )[\d\|.]+", values) != []:
+		tot_cholesterol = re.findall(r"(?<=Cholesterol )[\d\|.]+", values)[0]
+	else:
+		tot_cholesterol = None
+	if re.findall(r"(?<=Protein )[\d\|.]+", values) != []:
+		tot_protein = re.findall(r"(?<=Protein )[\d\|.]+", values)[0]
+	else:
+		tot_protein = None
 
-	print("Name{}".format(p_name))
+	if re.findall(r"(?<=Total Carbohydrates )[\d\|.]+", values) != []:
+		tot_carbs = re.findall(r"(?<=Total Carbohydrates )[\d\|.]+", values)[0]
+	else:
+		tot_carbs = None
+
+	if re.findall(r"(?<=Calories )[\d\|.]+", values) != []:
+		tot_calories = re.findall(r"(?<=Calories )[\d\|.]+", values)[0]
+	else:
+		tot_calories = None
+
+	print("Name {}".format(p_name))
 	print("Serving Size {}".format(serving_size))
 	print("Cholesterol {}".format(tot_cholesterol))
 	print("Protein {}".format(tot_protein))
@@ -264,6 +306,6 @@ if __name__ == "__main__":
 
 	driver.get(img)
 	time.sleep(2)
+
 	# End the driver session
 	driver.quit()
-
