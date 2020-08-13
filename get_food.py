@@ -205,7 +205,8 @@ def load_to_database(categories):
 					carbohydrates = float(tot_carbs),
 					protein = float(tot_protein),
 					cholesterol = float(tot_cholesterol),
-					image = float(blobData)
+					image = float(blobData),
+					url = url
 					)
 
 				# Add the product to the database
