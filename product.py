@@ -17,3 +17,4 @@ class Product(Base):
 	protein = Column('protein', Numeric)
 	cholesterol = Column('cholesterol', Numeric)
 	image = Column('image', LargeBinary)
+	url = Column('url', String, unique = True)
