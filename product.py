@@ -1,4 +1,3 @@
-
 from sqlalchemy import Column, Integer, Numeric, String, ForeignKey, LargeBinary
 from sqlalchemy.ext.declarative import declarative_base
 
@@ -6,15 +5,15 @@ Base = declarative_base()
 
 class Product(Base):
 	__tablename__ = "product"
-	product_id = Column('id', String, primary_key = True, index = True)
-	category = Column('category', String)
-	subcategory = Column('subcategory', String)
-	name = Column('name', String, unique = True)
-	serving = Column('serving', String)
-	calories = Column('calories', Numeric)
-	fat = Column('fat', Numeric)
-	carbohydrates = Column('carbohydrates', Numeric)
-	protein = Column('protein', Numeric)
-	cholesterol = Column('cholesterol', Numeric)
-	image = Column('image', LargeBinary)
-	url = Column('url', String, unique = True)
+	product_id = Column('id', Integer, primary_key = True, index = True, autoincrement = True)
+	category = Column('category', String(500))
+	subcategory = Column('subcategory', String(500))
+	name = Column('name', String(500))
+	serving = Column('serving', String(500), nullable = True)
+	calories = Column('calories', Numeric, nullable = True)
+	fat = Column('fat', Numeric, nullable = True)
+	carbohydrates = Column('carbohydrates', Numeric, nullable = True)
+	protein = Column('protein', Numeric, nullable = True)
+	cholesterol = Column('cholesterol', Numeric, nullable = True)
+	image = Column('image', LargeBinary, nullable = True)
+	url = Column('url', String(500), nullable = True)
