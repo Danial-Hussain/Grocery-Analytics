@@ -1,11 +1,82 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, jsonify, json
+from wtforms import StringField, TextField, Form
+from wtforms.validators import DataRequired, Length
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import Column, Integer, Numeric, String, ForeignKey, LargeBinary
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
+import os
 
 app = Flask(__name__)
 
+app.config['SQLALCHEMY_DATABASE_URI']= "sqlite:///data/product_data.db"
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
+app.config['DEBUG'] = True
+
+db = SQLAlchemy(app) 
+
+Base = declarative_base()
+
+class Product(db.Model):
+	__tablename__ = "product"
+	product_id = Column('id', Integer, primary_key = True, index = True, autoincrement = True)
+	category = Column('category', String(500))
+	subcategory = Column('subcategory', String(500))
+	name = Column('name', String(500))
+	serving = Column('serving', String(500), nullable = True)
+	calories = Column('calories', Numeric, nullable = True)
+	fat = Column('fat', Numeric, nullable = True)
+	carbohydrates = Column('carbohydrates', Numeric, nullable = True)
+	protein = Column('protein', Numeric, nullable = True)
+	cholesterol = Column('cholesterol', Numeric, nullable = True)
+	image = Column('image', LargeBinary, nullable = True)
+	url = Column('url', String(500), nullable = True)
+	def as_dict(self):
+		return {'name': self.name}
+
+
+class SearchForm(Form): #create form
+	name = StringField('Name', validators=[DataRequired(),Length(max=40)],render_kw={"placeholder": "product name"})
+
+
+# Hold the user's cart
+userCart = []
+
+# Hold the user's searches
+userSearch = []
+
+
 @app.route('/')
 def home():
-	return render_template('index.html')
+	form = SearchForm(request.form)
+	return render_template('index.html', form=form)
+
+@app.route('/products')
+def productdic():
+	res = Product.query.all()
+	names = [r.as_dict() for r in res]
+	return jsonify(names)
+
+@app.route('/process', methods=['POST'])
+def process():
+	name = request.form['name']
+	if name:
+		return jsonify({'name':name})
+	return jsonify({'error': 'missing data..'})
+
+
+@app.route('/cart')
+def cart():
+	return render_template('cart.html')
+
+@app.route('/visualizations')
+def viz():
+	pass
+
+@app.route('/about')
+def about():
+	pass
 
 
 if __name__ == "__main__":
-	app.run()
+	app.run(debug = True) 
