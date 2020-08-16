@@ -9,16 +9,20 @@
 
     <link rel="stylesheet" type="text/css" href="../static/css/style.css"/>
 
+    <!-- Ajax -->
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
     <!--Bootstrap and JQuery-->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="../static/css/mdb.min.css">
 
     <!--Font-->
     <link href="https://fonts.googleapis.com/css2?family=Antic+Slab&family=PT+Sans:wght@700&display=swap" rel="stylesheet">
+
 
   </head>
 
@@ -32,14 +36,17 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarText">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            <li class="nav-item">
+              <a class="nav-link" href="{{url_for('home')}}">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">About <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="{{url_for('cart')}}">Your Cart</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Data Visualizations</a>
+              <a class="nav-link" href="{{url_for('viz')}}">Data Visualizations</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{url_for('about')}}">About <span class="sr-only">(current)</span></a>
             </li>
           </ul>
           <span class="navbar-text">
@@ -49,7 +56,7 @@
     </nav>
 
 
-  
+  <!-- Top Introduction -->
   <div class = "h-100 row align-items-center">
     <div class = "col-md-6 offset-md-3">
       <h1>WholeFoods Analytics</h1>
@@ -58,19 +65,92 @@
     </div>
   </div>
   
+  <!-- Search Bar -->
   <div class = "row">
     <div class= 'col-md-6 offset-md-3'>
       <div class="input-group md-form form-sm form-2 pl-0">
-      <input class="form-control my-0 py-1 lime-border" type="text" placeholder="Search for a product" aria-label="Search">
+<!--       <input class="form-control my-0 py-1 lime-border" type="text" placeholder="Search for a product" aria-label="Search"> -->
+      {{form.name(class="form-control")}}
+      <button class="btn btn-outline-success btn-rounded btn-sm my-0" type="submit">Search</button>
       <div class="input-group-append">
-        <span class="input-group-text lime lighten-2" id="basic-text1"><i class="fas fa-search text-grey"
-            aria-hidden="true"></i></span>
       </div>
       </div>
     </div>
   </div>
+  <div id = "result"></div>
+
+<script>
+$(document).ready(function(){
+ var names=[];
+ function loadNames(){
+  $.getJSON('/products', function(data, status, xhr){
+   for (var i = 0; i < data.length; i++ ) {
+    names.push(data[i].name);
+    
+   }
+ });
+ };
+ loadNames();
+ 
+ $('#name').autocomplete({
+  source: names, 
+ }); 
+ 
+ $('form').on('submit', function(e){
+  $.ajax({
+   data: {
+    name:$('#name').val()
+   },
+   type: 'POST',
+   url : '/process'
+  })
+  .done(function(data){ 
+   if (data.error){
+    $('#result').text(data.error).show();
+   }
+   else {
+    $('#result').html(data.name).show()
+   }
+  })
+  e.preventDefault();
+ });
+}); 
+</script>
 
 
+
+<!-- Shopping List and Analytics -->
+  <div class="row">
+
+    <div class="col-md-3 offset-md-1">
+        <div class="card text-#9ccc65 #aed581 light-green lighten-2 bg-primary mb-3" style="max-width: 20rem;">
+          <div class="card-header elegant-color-dark #212121"><strong>Your Shopping List</strong></div>
+          <div class="card-body">
+            <h5 class="card-title">Primary Panel title</h5>
+            <p class="card-text text-white">Some quick example text to build on the panel title and make up the bulk of the panel's content.</p>
+          </div>
+        </div>
+    </div>
+
+      <!-- Product -->
+    <div class="col-md-4">
+
+    </div>
+
+
+    <div class="col-md-3 col-md-pull-1">
+        <div class="card text-#9ccc65 #aed581 light-green lighten-2 bg-primary mb-3" style="max-width: 20rem;">
+          <div class="card-header elegant-color-dark #212121"><strong>Analytics</strong></div>
+          <div class="card-body">Total Calories</div>
+          <div class="card-body">Total Fat</div>
+          <div class="card-body">Total Carbohydrates</div>
+          <div class="card-body">Total Protein</div>
+          <div class="card-body">Total Cholesterol</div>
+        </div>
+    </div>
+      
+
+  </div>
 
 </header>
 
