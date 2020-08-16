@@ -64,3 +64,25 @@ p{
 .input-group.md-form.form-sm.form-2 input.lime-border {
   border: 1px solid #cddc39;
 }
+
+strong{
+  color: white;
+  text-align: center;
+  font-size: 1.5em;
+}
+
+
+.form-control {
+    display: block;
+    width:300px;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.btn {padding: .375rem .75rem; margin-top:10px;}
