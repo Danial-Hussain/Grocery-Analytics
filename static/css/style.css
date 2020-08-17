@@ -72,9 +72,9 @@ strong{
 }
 
 
-.form-control {
+
+/*.form-control {
     display: block;
-    width:300px;
     padding: .375rem .75rem;
     font-size: 1rem;
     line-height: 1.5;
@@ -84,5 +84,6 @@ strong{
     border: 1px solid #ced4da;
     border-radius: .25rem;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-}
+}*/
 .btn {padding: .375rem .75rem; margin-top:10px;}
+
