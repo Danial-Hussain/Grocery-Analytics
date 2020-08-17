@@ -36,7 +36,7 @@ class Product(db.Model):
 
 
 class SearchForm(Form): #create form
-	name = StringField('Name', validators=[DataRequired(),Length(max=40)],render_kw={"placeholder": "product name"})
+	name = StringField('Name', validators=[DataRequired(),Length(min= 5, max=40)],render_kw={"placeholder": "Enter a product"})
 
 
 # Hold the user's cart
@@ -49,7 +49,7 @@ userSearch = []
 @app.route('/')
 def home():
 	form = SearchForm(request.form)
-	return render_template('index.html', form=form)
+	return render_template('index.html' , form=form, selected_product = None)
 
 @app.route('/products')
 def productdic():
@@ -59,11 +59,19 @@ def productdic():
 
 @app.route('/process', methods=['POST'])
 def process():
-	name = request.form['name']
-	if name:
-		return jsonify({'name':name})
-	return jsonify({'error': 'missing data..'})
-
+	try:
+		product_name = request.form['name']
+		query = db.session.query(Product).filter_by(name = product_name).one()
+		product = {'name': query.name,
+							 'serving': query.serving,
+							 'calories': str(query.calories),
+							 'fat': str(query.fat),
+							 'carbohydrates': str(query.carbohydrates),
+							 'protein': str(query.protein),
+							 'cholesterol': str(query.cholesterol)}
+		return product
+	except:
+		return jsonify(None)
 
 @app.route('/cart')
 def cart():
