@@ -56,17 +56,20 @@
     </nav>
 
 
+
   <!-- Top Introduction -->
   <div class = "h-100 row align-items-center">
     <div class = "col-md-6 offset-md-3">
       <h1>WholeFoods Analytics</h1>
       <h2>Introducing a healthier way to shop</h2>
       <p>This application allows you to visualize your grocery basket in order to make healthier purchasing decisions. Start by searching for a product and adding it to your cart. Then you can see your total calories, carbohydrates, fat, protein and cholesterol. After setting up your cart you can transition your order to amazon or convert your order to a word document to take to WholeFoods!</p>
-      <p>Enter a product name in the text box and choose from the options available before hitting search. The product will appear and you will have the choice on whether to add it to your cart. Once you've added all the products, naviage to "Your Cart" to visualize the nutrition information for your basket.</p>
+      <p>Enter a product name in the text box and choose from the options available before hitting search. The product will appear and you will have the choice on whether to add it to your cart. Once you've added all the products, navigate to "Your Cart" to visualize the nutrition information for your basket.</p>
       <strong style="color: black; font-size: 1em; font-weight: bold;">Example: Ketchup</strong>
     </div>
   </div>
   
+
+
   <!-- Search Bar -->
   <div class = "row">
     <div class= 'col-md-6 offset-md-3'>
@@ -75,7 +78,7 @@
           <div class="form-group">
             {{form.name(class="form-control")}}
           </div>
-          <button class="btn btn-outline-success btn-rounded btn-sm my-0" type="submit" data-target= 'search'>Search</button>
+          <button class="btn btn-outline-success btn-rounded btn-sm my-0" type="submit" data-toggle="modal" data-target="#exampleModal">Search</button>
         </form>
       <div class="input-group-append">
       </div>
@@ -83,7 +86,7 @@
     </div>
   </div>
 
-
+<!-- Script for taking search bar input and showing modal -->
 <script>
 $(document).ready(function(){
  var names=[];
@@ -109,11 +112,15 @@ $(document).ready(function(){
    url : '/process'
   })
   .done(function(data){ 
-   if (data.error){
-    $('#error').text("Invalid Choice, please select a product from the dropdown and then press search").show();
+   if (data.name == "ERROR"){
+    $('#error').text("Invalid choice, please select a product from the dropdown and then press search").show();
+    $('#productValid').hide()
    }
    else {
+    $("#productValid").show();
+    $('#error').text("").show();
     $('#pname').html(data.name).show()
+    $('#serving').html(data.serving).show()
     $('#tot_cal').html(data.calories).show()
     $('#tot_fat').html(data.fat + " grams").show()
     $('#tot_carb').html(data.carbohydrates + " grams").show()
@@ -127,47 +134,54 @@ $(document).ready(function(){
 </script>
 
 
- <!-- Product Card -->
-  <div id = "result"></div>
-    <div class="row">
-      <div class="col md-4 offset-md-4" id="error">
+ <!-- Product Card Modal-->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="row">
+         <div class="col md-4 offset-md-4" id="error"  style="font-weight: bold;">
+         </div>
       </div>
-    </div>
+      <div class = "row justify-content-center" id = 'productValid'>
+         <div class="col md-4 offset-md-4">
+            <div class="card">
+               <h3 class="card-header #00897b teal darken-1 lighten-1 white-text text-uppercase font-weight-bold text-center py-3" style="font-family: 'PT Sans', sans-serif;" id="pname">Product Name</h3>
+               <div class="card-body">
+                  <ul class="list-group">
+                     <li class="list-group-item d-flex justify-content-between align-items-center" style="font-weight: bold;">
+                        Serving Size
+                        <span class="badge badge-success badge-pill" id="serving">{{selected_product.serving}}</span>
+                     </li>
+                     <li class="list-group-item d-flex justify-content-between align-items-center" style="font-weight: bold;">
+                        Total Calories
+                        <span class="badge badge-success badge-pill" id="tot_cal">{{selected_product.calories}}</span>
+                     </li>
+                     <li class="list-group-item d-flex justify-content-between align-items-center" style="font-weight: bold;">
+                        Total Fat
+                        <span class="badge badge-success badge-pill" id="tot_fat">{{selected_product.fat}} grams</span>
+                     </li>
+                     <li class="list-group-item d-flex justify-content-between align-items-center" style="font-weight: bold;">
+                        Total Carbohydrates
+                        <span class="badge badge-success badge-pill" id="tot_carb">{{selected_product.carbohydrates}} grams</span>
+                     </li>
+                     <li class="list-group-item d-flex justify-content-between align-items-center" style="font-weight: bold;">
+                        Total Protein
+                        <span class="badge badge-success badge-pill" id="tot_prot">{{selected_product.protein}} grams</span>
+                     </li>
+                     <li class="list-group-item d-flex justify-content-between align-items-center" style="font-weight: bold;">
+                        Total Cholesterol
+                        <span class="badge badge-success badge-pill" id="tot_chol">{{selected_product.cholesterol}} miligrams</span>
+                     </li>
+                  </ul>
+                  <a href="#" class="btn btn-outline-black btn-md waves-effect">Add to Cart</a>
+                  <button type="button" class="btn btn-outline-black btn-md waves-effect" data-dismiss="modal" href = "index.html">Close</button>
+               </div>
+            </div>
+         </div>
+         <div class="col-md-4"></div>
+      </div>
+   </div>
+</div>
 
-    <div class = "row justify-content-center">
-      <div class="col md-4 offset-md-4">
-        <div class="card">
-        <h3 class="card-header #00897b teal darken-1 lighten-1 white-text text-uppercase font-weight-bold text-center py-3" style="font-family: 'PT Sans', sans-serif;" id="pname">Product Name</h3>
-        <div class="card-body">
-          <ul class="list-group">
-            <li class="list-group-item d-flex justify-content-between align-items-center" style="font-weight: bold;">
-              Total Calories
-              <span class="badge badge-success badge-pill" id="tot_cal">{{selected_product.calories}}</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center" style="font-weight: bold;">
-              Total Fat
-              <span class="badge badge-success badge-pill" id="tot_fat">{{selected_product.fat}} grams</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center" style="font-weight: bold;">
-              Total Carbohydrates
-              <span class="badge badge-success badge-pill" id="tot_carb">{{selected_product.carbohydrates}} grams</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center" style="font-weight: bold;">
-              Total Protein
-              <span class="badge badge-success badge-pill" id="tot_prot">{{selected_product.protein}} grams</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center" style="font-weight: bold;">
-              Total Cholesterol
-              <span class="badge badge-success badge-pill" id="tot_chol">{{selected_product.cholesterol}} miligrams</span>
-            </li>
-          </ul>
-          <p class="text-small text-muted mb-0 pt-3">* At vero eos et accusamus et iusto ducimus.</p>
-          <a href="#" class="btn btn-outline-black btn-md waves-effect">Add to Cart</a>
-        </div>
-      </div>
-      </div>
-      <div class="col-md-4"></div>
-    </div>
 
 </header>
 
