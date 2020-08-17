@@ -71,7 +71,7 @@ def process():
 							 'cholesterol': str(query.cholesterol)}
 		return product
 	except:
-		return jsonify(None)
+		return jsonify({'name': "ERROR"})
 
 @app.route('/cart')
 def cart():
