@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Home &mdash; Danial Hussain </title>
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css"/>
+
+
+    <!--Bootstrap and JQuery-->
+   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/mdb.min.css">
+
+       <!--Font-->
+    <link href="https://fonts.googleapis.com/css2?family=Antic+Slab&family=PT+Sans:wght@700&display=swap" rel="stylesheet">
+
+  </head>
+
+
+<header>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <h1 class="navbar-brand" href="#">WholeFoods Analytics</h1>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="{{url_for('home')}}">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{url_for('cart')}}">Your Cart</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{url_for('viz')}}">Data Visualizations</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{url_for('about')}}">About <span class="sr-only">(current)</span></a>
+            </li>
+          </ul>
+          <span class="navbar-text">
+           Introducing a healthier way to shop
+          </span>
+        </div>
+    </nav>
+
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+         <div class='tableauPlaceholder' id='viz1597774152456' style='position: relative'>
+            <noscript><a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Av&#47;AvgNutrition&#47;AvgNutritionInfo&#47;1_rss.png' style='border: none' /></a></noscript>
+            <object class='tableauViz'  style='display:none;'>
+               <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+               <param name='embed_code_version' value='3' />
+               <param name='site_root' value='' />
+               <param name='name' value='AvgNutrition&#47;AvgNutritionInfo' />
+               <param name='tabs' value='no' />
+               <param name='toolbar' value='no' />
+               <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Av&#47;AvgNutrition&#47;AvgNutritionInfo&#47;1.png' />
+               <param name='animate_transition' value='yes' />
+               <param name='display_static_image' value='yes' />
+               <param name='display_spinner' value='yes' />
+               <param name='display_overlay' value='yes' />
+               <param name='display_count' value='yes' />
+               <param name='language' value='en' />
+            </object>
+         </div>
+         <script type='text/javascript'>                    var divElement = document.getElementById('viz1597774152456');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+      </div>
+   </div>
+   <div>
+         <div class="col-md-6 offset-md-3">
+         <div class='tableauPlaceholder' id='viz1597773714183' style='position: relative'>
+            <noscript><a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Bo&#47;Book2_15977715264770&#47;Dashboard1&#47;1_rss.png' style='border: none' /></a></noscript>
+            <object class='tableauViz'  style='display:none;'>
+               <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+               <param name='embed_code_version' value='3' />
+               <param name='site_root' value='' />
+               <param name='name' value='Book2_15977715264770&#47;Dashboard1' />
+               <param name='tabs' value='no' />
+               <param name='toolbar' value='no' />
+               <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Bo&#47;Book2_15977715264770&#47;Dashboard1&#47;1.png' />
+               <param name='animate_transition' value='yes' />
+               <param name='display_static_image' value='yes' />
+               <param name='display_spinner' value='yes' />
+               <param name='display_overlay' value='yes' />
+               <param name='display_count' value='yes' />
+               <param name='language' value='en' />
+            </object>
+         </div>
+         <script type='text/javascript'>                    var divElement = document.getElementById('viz1597773714183');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='1000px';vizElement.style.height='800px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='1000px';vizElement.style.height='800px';} else { vizElement.style.width='100%';vizElement.style.height='800px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+      </div>
+
+   </div>
+
+
+   </header>
+</html>
