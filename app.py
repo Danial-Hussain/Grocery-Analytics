@@ -79,7 +79,7 @@ def cart():
 
 @app.route('/visualizations')
 def viz():
-	pass
+	return render_template('data_viz.html')
 
 @app.route('/about')
 def about():
