@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify, json
+from flask import Flask, render_template, request, jsonify, json, flash, redirect, url_for
 from wtforms import StringField, TextField, Form
 from wtforms.validators import DataRequired, Length
 from flask_sqlalchemy import SQLAlchemy
@@ -11,6 +11,7 @@ app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI']= "sqlite:///data/product_data.db"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
+app.config['SECRET_KEY'] = '9240bf46152dfe0b193531626c625c00'
 app.config['DEBUG'] = True
 
 db = SQLAlchemy(app) 
@@ -41,9 +42,6 @@ class SearchForm(Form): #create form
 
 # Hold the user's cart
 userCart = []
-
-# Hold the user's searches
-userSearch = []
 
 
 @app.route('/')
@@ -80,6 +78,19 @@ def cart():
 @app.route('/visualizations')
 def viz():
 	return render_template('data_viz.html')
+
+@app.route('/submit', methods=['POST'])
+def submit():
+	product = request.form['pname']
+	try:
+		query = db.session.query(Product).filter_by(name = product).one()
+		message = {'message': 'success'}
+		userCart.append(product)
+		return message
+	except:
+		message = {'message': 'failure'}
+		return message
+
 
 @app.route('/about')
 def about():
