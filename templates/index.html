@@ -55,8 +55,6 @@
         </div>
     </nav>
 
-
-
   <!-- Top Introduction -->
   <div class = "h-100 row align-items-center">
     <div class = "col-md-6 offset-md-3">
@@ -85,6 +83,7 @@
       </div>
     </div>
   </div>
+
 
 <!-- Script for taking search bar input and showing modal -->
 <script>
@@ -117,15 +116,52 @@ $(document).ready(function(){
     $('#productValid').hide()
    }
    else {
+    $('#error').hide()
     $("#productValid").show();
-    $('#error').text("").show();
     $('#pname').html(data.name).show()
-    $('#serving').html(data.serving).show()
-    $('#tot_cal').html(data.calories).show()
-    $('#tot_fat').html(data.fat + " grams").show()
-    $('#tot_carb').html(data.carbohydrates + " grams").show()
-    $('#tot_prot').html(data.protein + " grams").show()
-    $('#tot_chol').html(data.cholesterol + " miligrams").show()
+
+    if (data.serving == "None"){
+      $('#serving').hide()
+    }
+    else{
+      $('#serving').html(data.serving).show()
+    }
+
+    if (data.calories == "None"){
+      $('#tot_cal').hide()
+    }
+    else{
+      $('#tot_cal').html(data.calories).show()
+    }
+
+    if (data.fat == "None"){
+      $('#tot_fat').hide()
+    }
+    else{
+      $('#tot_fat').html(data.fat + " grams").show()
+    }
+
+    if (data.carbohydrates == "None"){
+      $('#tot_carb').hide()
+    }
+    else{
+      $('#tot_carb').html(data.carbohydrates + " grams").show()
+    }
+
+    if (data.protein == "None"){
+      $('#tot_prot').hide()
+    }
+    else{
+      $('#tot_prot').html(data.protein + " grams").show()
+    }
+
+    if (data.cholesterol == "None"){
+      $('#tot_chol').hide()
+    }
+    else{
+      $('#tot_chol').html(data.cholesterol + " miligrams").show()
+    }
+
    }
   })
   e.preventDefault();
@@ -135,15 +171,16 @@ $(document).ready(function(){
 
 
  <!-- Product Card Modal-->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-   <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="row">
-         <div class="col md-4 offset-md-4" id="error"  style="font-weight: bold;">
-         </div>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop='static' data-keyboard = "false">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="error"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
       </div>
-      <div class = "row justify-content-center" id = 'productValid'>
-         <div class="col md-4 offset-md-4">
-            <div class="card">
+      <div class="modal-body">
+        <div class="card" id="productValid">
                <h3 class="card-header #00897b teal darken-1 lighten-1 white-text text-uppercase font-weight-bold text-center py-3" style="font-family: 'PT Sans', sans-serif;" id="pname">Product Name</h3>
                <div class="card-body">
                   <ul class="list-group">
@@ -172,16 +209,41 @@ $(document).ready(function(){
                         <span class="badge badge-success badge-pill" id="tot_chol">{{selected_product.cholesterol}} miligrams</span>
                      </li>
                   </ul>
-                  <a href="#" class="btn btn-outline-black btn-md waves-effect">Add to Cart</a>
-                  <button type="button" class="btn btn-outline-black btn-md waves-effect" data-dismiss="modal" href = "index.html">Close</button>
+                  <form action="/submit" method="post" id="addToCart">
+                    <input type="submit" name="submit_button" class="btn btn-outline-black btn-md waves-effect" value="Add to Cart" id="product_submitted"/>
+                  </form>
+                  <button type="button" class="btn btn-outline-black btn-md waves-effect" data-dismiss="modal">Close</button>
                </div>
             </div>
-         </div>
-         <div class="col-md-4"></div>
       </div>
-   </div>
+      <div class="modal-footer">
+        <div class="alert alert-success" id="product_success"></div>
+        <div class="alert alert-danger" id="product_failure"></div>
+      </div>
+    </div>
+  </div>
 </div>
 
+
+<script>
+  $(function(){
+    $('#addToCart').on('submit', function(e){
+      $.post('/submit', 
+         {pname: $('#pname').html()}, 
+         function(data, status, xhr){
+          if (data.message == 'success'){
+            $("#product_success").html("Product added successfully!").show().delay(3000).fadeOut();
+            $("#product_failure").show().delay(3000).fadeOut();
+          }
+          else{
+            $("#product_failure").html("Product failed to add!").show().delay(3000).fadeOut();
+            $("#product_success").show().delay(3000).fadeOut()
+          }
+
+         });
+    });
+  });
+</script>
 
 </header>
 
