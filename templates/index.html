@@ -45,9 +45,6 @@
             <li class="nav-item">
               <a class="nav-link" href="{{url_for('viz')}}">Data Visualizations</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{url_for('about')}}">About <span class="sr-only">(current)</span></a>
-            </li>
           </ul>
           <span class="navbar-text">
            Introducing a healthier way to shop
@@ -84,21 +81,22 @@
     </div>
   </div>
 
-
+<!-- Shopping Cart -->
+{% if cart != [] %}
   <div class="row" style="margin-top: 30px;">
     <div class="col-md-4 offset-md-4">
-      <h1><u>Your Cart</u></h1>
+      <h1 style="margin-bottom: 10px;"><u>Your Cart</u></h1>
       {% for item in cart %}
-      <div class="d-flex align-items-center">
+      <div class="d-flex justify-content-center">
         <ul class="list-group">
           <li class="list-group-item disabled">{{item}}
-            <button class="btn btn-outline-black btn-rounded btn-sm my-0" type="submit" data-toggle="modal" data-target="#exampleModal">Remove</button>
           </li>
         </ul>
       </div>
       {% endfor %}
     </div>
   </div>
+{% endif %}
 
 
 <!-- Script for taking search bar input and showing modal -->
