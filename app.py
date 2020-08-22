@@ -47,7 +47,7 @@ userCart = []
 @app.route('/')
 def home():
 	form = SearchForm(request.form)
-	return render_template('index.html' , form=form, selected_product = None)
+	return render_template('index.html' , form=form, cart = userCart)
 
 @app.route('/products')
 def productdic():
@@ -90,11 +90,6 @@ def submit():
 	except:
 		message = {'message': 'failure'}
 		return message
-
-
-@app.route('/about')
-def about():
-	pass
 
 
 if __name__ == "__main__":
