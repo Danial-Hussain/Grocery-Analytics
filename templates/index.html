@@ -73,7 +73,7 @@
     <div class= 'col-md-6 offset-md-3'>
       <div class="input-group md-form form-sm form-2 pl-0">
         <form class="form-inline">
-          <div class="form-group">
+          <div class="form-horizontal">
             {{form.name(class="form-control")}}
           </div>
           <button class="btn btn-outline-success btn-rounded btn-sm my-0" type="submit" data-toggle="modal" data-target="#exampleModal">Search</button>
@@ -81,6 +81,22 @@
       <div class="input-group-append">
       </div>
       </div>
+    </div>
+  </div>
+
+
+  <div class="row" style="margin-top: 30px;">
+    <div class="col-md-4 offset-md-4">
+      <h1><u>Your Cart</u></h1>
+      {% for item in cart %}
+      <div class="d-flex align-items-center">
+        <ul class="list-group">
+          <li class="list-group-item disabled">{{item}}
+            <button class="btn btn-outline-black btn-rounded btn-sm my-0" type="submit" data-toggle="modal" data-target="#exampleModal">Remove</button>
+          </li>
+        </ul>
+      </div>
+      {% endfor %}
     </div>
   </div>
 
@@ -186,33 +202,32 @@ $(document).ready(function(){
                   <ul class="list-group">
                      <li class="list-group-item d-flex justify-content-between align-items-center" style="font-weight: bold;">
                         Serving Size
-                        <span class="badge badge-success badge-pill" id="serving">{{selected_product.serving}}</span>
+                        <span class="badge badge-success badge-pill" id="serving"></span>
                      </li>
                      <li class="list-group-item d-flex justify-content-between align-items-center" style="font-weight: bold;">
                         Total Calories
-                        <span class="badge badge-success badge-pill" id="tot_cal">{{selected_product.calories}}</span>
+                        <span class="badge badge-success badge-pill" id="tot_cal"></span>
                      </li>
                      <li class="list-group-item d-flex justify-content-between align-items-center" style="font-weight: bold;">
                         Total Fat
-                        <span class="badge badge-success badge-pill" id="tot_fat">{{selected_product.fat}} grams</span>
+                        <span class="badge badge-success badge-pill" id="tot_fat"></span>
                      </li>
                      <li class="list-group-item d-flex justify-content-between align-items-center" style="font-weight: bold;">
                         Total Carbohydrates
-                        <span class="badge badge-success badge-pill" id="tot_carb">{{selected_product.carbohydrates}} grams</span>
+                        <span class="badge badge-success badge-pill" id="tot_carb"></span>
                      </li>
                      <li class="list-group-item d-flex justify-content-between align-items-center" style="font-weight: bold;">
                         Total Protein
-                        <span class="badge badge-success badge-pill" id="tot_prot">{{selected_product.protein}} grams</span>
+                        <span class="badge badge-success badge-pill" id="tot_prot"></span>
                      </li>
                      <li class="list-group-item d-flex justify-content-between align-items-center" style="font-weight: bold;">
                         Total Cholesterol
-                        <span class="badge badge-success badge-pill" id="tot_chol">{{selected_product.cholesterol}} miligrams</span>
+                        <span class="badge badge-success badge-pill" id="tot_chol"></span>
                      </li>
                   </ul>
                   <form action="/submit" method="post" id="addToCart">
                     <input type="submit" name="submit_button" class="btn btn-outline-black btn-md waves-effect" value="Add to Cart" id="product_submitted"/>
                   </form>
-                  <button type="button" class="btn btn-outline-black btn-md waves-effect" data-dismiss="modal">Close</button>
                </div>
             </div>
       </div>
@@ -232,12 +247,13 @@ $(document).ready(function(){
          {pname: $('#pname').html()}, 
          function(data, status, xhr){
           if (data.message == 'success'){
-            $("#product_success").html("Product added successfully!").show().delay(1500).fadeOut();
-            $("#product_failure").show().delay(3000).fadeOut();
+            $("#product_success").html("Product added successfully!").show().delay(1000).fadeOut();
+            $("#product_failure").show().delay(1000).fadeOut();
+            location.reload();
           }
           else{
-            $("#product_failure").html("Product failed to add!").show().delay(3000).fadeOut();
-            $("#product_success").show().delay(3000).fadeOut()
+            $("#product_failure").html("Product failed to add!").show().delay(1000).fadeOut();
+            $("#product_success").show().delay(1000).fadeOut()
           }
 
          });
