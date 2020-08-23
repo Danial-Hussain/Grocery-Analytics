@@ -81,22 +81,6 @@
     </div>
   </div>
 
-<!-- Shopping Cart -->
-{% if cart != [] %}
-  <div class="row" style="margin-top: 30px;">
-    <div class="col-md-4 offset-md-4">
-      <h1 style="margin-bottom: 10px;"><u>Your Cart</u></h1>
-      {% for item in cart %}
-      <div class="d-flex justify-content-center">
-        <ul class="list-group">
-          <li class="list-group-item disabled">{{item}}
-          </li>
-        </ul>
-      </div>
-      {% endfor %}
-    </div>
-  </div>
-{% endif %}
 
 
 <!-- Script for taking search bar input and showing modal -->
@@ -195,7 +179,7 @@ $(document).ready(function(){
       </div>
       <div class="modal-body">
         <div class="card" id="productValid">
-               <h3 class="card-header #00897b teal darken-1 lighten-1 white-text text-uppercase font-weight-bold text-center py-3" style="font-family: 'PT Sans', sans-serif;" id="pname">Product Name</h3>
+               <h3 class="card-header #00897b teal darken-1 lighten-1 white-text font-weight-bold text-center py-3" style="font-family: 'PT Sans', sans-serif;" id="pname">Product Name</h3>
                <div class="card-body">
                   <ul class="list-group">
                      <li class="list-group-item d-flex justify-content-between align-items-center" style="font-weight: bold;">
@@ -246,12 +230,9 @@ $(document).ready(function(){
          function(data, status, xhr){
           if (data.message == 'success'){
             $("#product_success").html("Product added successfully!").show().delay(1000).fadeOut();
-            $("#product_failure").show().delay(1000).fadeOut();
-            location.reload();
           }
           else{
             $("#product_failure").html("Product failed to add!").show().delay(1000).fadeOut();
-            $("#product_success").show().delay(1000).fadeOut()
           }
 
          });

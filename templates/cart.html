@@ -53,32 +53,23 @@
 
 
 
-      <!-- Shopping List and Analytics -->
-  <div class="row">
-
-    <div class="col-md-6">
-        <div class="card text-#9ccc65 #aed581 light-green lighten-2 bg-primary mb-3">
-          <div class="card-header elegant-color-dark #212121"><strong>Your Shopping List</strong></div>
-          <div class="card-body">
-            <h5 class="card-title">Primary Panel title</h5>
-            <p class="card-text text-white">Some quick example text to build on the panel title and make up the bulk of the panel's content.</p>
+    <!-- Shopping Cart -->
+    {% if cart != [] %}
+      <div class="row" style="margin-top: 30px;">
+        <div class="col-md-4 offset-md-4">
+          <h1 style="margin-bottom: 10px;"><u>Your Cart</u></h1>
+          {% for item in cart %}
+          <div class="d-flex justify-content-center">
+            <ul class="list-group">
+              <li class="list-group-item disabled">{{item}}
+              </li>
+            </ul>
           </div>
+          {% endfor %}
         </div>
-    </div>
+      </div>
+    {% endif %}
 
-    <div class="col-md-6">
-        <div class="card text-#9ccc65 #aed581 light-green lighten-2 bg-primary mb-3">
-          <div class="card-header elegant-color-dark #212121"><strong>Analytics</strong></div>
-          <div class="card-body">Total Calories</div>
-          <div class="card-body">Total Fat</div>
-          <div class="card-body">Total Carbohydrates</div>
-          <div class="card-body">Total Protein</div>
-          <div class="card-body">Total Cholesterol</div>
-        </div>
-    </div>
-      
-
-  </div>
 
 
 
