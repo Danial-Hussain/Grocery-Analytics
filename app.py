@@ -5,6 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Column, Integer, Numeric, String, ForeignKey, LargeBinary
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
+from methods_for_dashboard import getTotals
 import os
 
 app = Flask(__name__)
@@ -46,17 +47,26 @@ userCart = []
 
 @app.route('/')
 def home():
+	"""
+	Home Page
+	"""
 	form = SearchForm(request.form)
-	return render_template('index.html' , form=form, cart = userCart)
+	return render_template('index.html' , form=form)
 
 @app.route('/products')
 def productdic():
+	"""
+	Used for live search
+	"""
 	res = Product.query.all()
 	names = [r.as_dict() for r in res]
 	return jsonify(names)
 
 @app.route('/process', methods=['POST'])
 def process():
+	"""
+	Gets data for product from the sql database
+	"""
 	try:
 		product_name = request.form['name']
 		query = db.session.query(Product).filter_by(name = product_name).one()
@@ -73,14 +83,24 @@ def process():
 
 @app.route('/cart')
 def cart():
-	return render_template('cart.html')
+	"""
+	Your shopping cart page
+	"""
+	tot_cal, tot_fat, tot_carb, tot_prot, tot_chol = getTotals(userCart)
+	return render_template('cart.html', cart = userCart)
 
 @app.route('/visualizations')
 def viz():
+	"""
+	Page for some interesting visualizations
+	"""
 	return render_template('data_viz.html')
 
 @app.route('/submit', methods=['POST'])
 def submit():
+	"""
+	Method that gets submitted data to be added to the cart
+	"""
 	product = request.form['pname']
 	try:
 		query = db.session.query(Product).filter_by(name = product).one()
