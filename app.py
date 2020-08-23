@@ -5,7 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Column, Integer, Numeric, String, ForeignKey, LargeBinary
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-from methods_for_dashboard import getTotals
+from methods_for_dashboard import getTotals, createBarChart
 import os
 
 app = Flask(__name__)
@@ -87,7 +87,16 @@ def cart():
 	Your shopping cart page
 	"""
 	tot_cal, tot_fat, tot_carb, tot_prot, tot_chol = getTotals(userCart)
-	return render_template('cart.html', cart = userCart)
+	createBarChart(userCart)
+
+	images = []
+
+	for file in os.listdir("static"):
+		if file.endswith(".png"):
+			img = "../static" + "/" + file
+			images.append(img)
+
+	return render_template('cart.html', bars = images, cart = userCart, tot_cal = tot_cal, tot_fat = tot_fat, tot_carb = tot_carb, tot_prot = tot_prot, tot_chol = tot_chol)
 
 @app.route('/visualizations')
 def viz():
