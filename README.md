@@ -15,7 +15,11 @@ Steps:
 1. Clone the repository to your desktop
 2. Make sure you have python installed on your system
 3. Install the dependencies
-  pip install requirements.txt
+```python
+pip install requirements.txt
+```
 4. Open the command window and run the application
-  python app.py
+```python
+python app.py
+```
 5. Navigate to localhost:5000 in your browser
