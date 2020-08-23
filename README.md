@@ -13,6 +13,8 @@
 ## What I Learned
 
 ## Future Considerations
+1. Improve the data visualizations: I choose to use the matplotlib package to make visualizations for the "Your Cart" page but in the future I would like to use a more interactive plotting package. I would also like to provide more insights and graphs for the user.
+2. Explore the data: I used tableau for some basic data exploration but give more time I would like to explore the dataset further.
 
 ## Want to try it out?
 Steps:
