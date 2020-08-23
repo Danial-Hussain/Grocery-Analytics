@@ -6,7 +6,9 @@
 ## Project Structure
 - Frontend: HTML/CSS, Vanilla Javascript, jQuery, AJAX
 - Backend: Flask
-- Data: SQLite (database), SQLAlchemy (object relational mapper), SQL (querying the data)
+- Data: SQLite (database), SQLAlchemy (object relational mapper), SQL (querying the data
+- Visualizations: Tableau and Matplotlib
+- Data Manipulation: Pandas and NumPy
 
 ## What I Learned
 
