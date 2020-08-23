@@ -12,6 +12,8 @@
 
 ## What I Learned
 
+## Future Considerations
+
 ## Want to try it out?
 Steps:
 1. Clone the repository to your desktop
