@@ -51,11 +51,9 @@
         </div>
     </nav>
 
-
-
     <!-- Shopping Cart -->
     {% if cart != [] %}
-      <div class="row" style="margin-top: 30px;">
+      <div class="row" style="margin-top: 30px; margin-bottom: 40px;">
         <div class="col-md-4 offset-md-4">
           <h1 style="margin-bottom: 10px;"><u>Your Cart</u></h1>
           {% for item in cart %}
@@ -71,9 +69,72 @@
     {% endif %}
 
 
+    <!--  -->
+    <div class="row">
+      <div class="col-md-2 offset-md-1">
+        <div class="card">
+          <div class="card-header">
+            <h2>Total Calories</h2>
+          </div>
+          <div class="card-body">
+            <h2>{{tot_cal}}</h2>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="card">
+          <div class="card-header">
+            <h2>Total Fat</h2>
+          </div>
+          <div class="card-body">
+            <h2>{{tot_fat}} grams</h2>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="card">
+          <div class="card-header">
+            <h2>Total Carbohydrates</h2>
+          </div>
+          <div class="card-body">
+            <h2>{{tot_carb}} grams</h2>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="card">
+          <div class="card-header">
+            <h2>Total Protein</h2>
+          </div>
+          <div class="card-body">
+            <h2>{{tot_prot}} grams</h2>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="card">
+          <div class="card-header">
+            <h2>Total Cholesterol</h2>
+          </div>
+          <div class="card-body">
+            <h2>{{tot_chol}} miligrams</h2>
+          </div>
+        </div>
+      </div>
+    </div>
 
+    <!-- Bar charts -->
+    {% if bars != [] %}
+    <div class="row">
+      {% for bar in bars %}
+      <div class="col-md-6 d-flex justify-content-center">
+        <img src= "{{bar}}">
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
 
-  </header>
+</header>
 
 
 
