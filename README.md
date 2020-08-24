@@ -6,12 +6,12 @@
 ## Project Structure
 - Frontend: HTML/CSS, Vanilla Javascript, jQuery, AJAX
 - Backend: Flask
-- Data: SQLite (database), SQLAlchemy (object relational mapper), SQL (querying the data
+- Data: SQLite (database), SQLAlchemy (object relational mapper), SQL (querying the data)
 - Visualizations: Tableau and Matplotlib
 - Data Manipulation: Pandas and NumPy
 
 ## What I Learned
-This project allowed to grasp a better understanding of two key concepts the first of which is databases. Constructing schema tables and writing SQL queries I was quickly introduced to the intricacies of databases. Additionally, I also gained experience using SQLAlchemy which builds upon the object-oriented nature of python when interacting with databases. In addition to databases, I gained a firm understanding of full-stack development and how the frontend components interact with the backend components in an application.
+This project allowed me to grasp a better understanding of two key concepts the first of which is databases. Constructing schema tables and writing SQL queries, I was quickly introduced to the intricacies of databases. Additionally, I also gained experience using SQLAlchemy which builds upon the object-oriented nature of python when interacting with databases. In addition to databases, I gained a firm understanding of full-stack development and how the frontend components interact with the backend components in an application.
 
 ## Future Considerations
 1. Improve the data visualizations: I choose to use the matplotlib package to make visualizations for the "Your Cart" page but in the future I would like to use a more interactive plotting package. I would also like to provide more insights and graphs for the user.
