@@ -31,7 +31,6 @@ class Product(db.Model):
 	carbohydrates = Column('carbohydrates', Numeric, nullable = True)
 	protein = Column('protein', Numeric, nullable = True)
 	cholesterol = Column('cholesterol', Numeric, nullable = True)
-	image = Column('image', LargeBinary, nullable = True)
 	url = Column('url', String(500), nullable = True)
 	def as_dict(self):
 		return {'name': self.name}
