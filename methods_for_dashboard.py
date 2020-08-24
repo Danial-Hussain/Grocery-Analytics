@@ -2,14 +2,18 @@ import sqlite3
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+from matplotlib.pyplot import figure
 import Franklin_Gothic_Book
 
-conn = sqlite3.connect('data/product_data.db')
+conn = sqlite3.connect('data/product_data.db', check_same_thread=False)
 
 c = conn.cursor()
 
 
 def getTotals(cart):
+	if cart == []:
+		return None, None, None, None, None
+
 	# Total Calories
 	tot_cal = 0
 	# Total Fat
@@ -22,18 +26,23 @@ def getTotals(cart):
 	tot_chol = 0
 
 	for item in cart:
-		tot_cal += c.execute("SELECT calories FROM product WHERE name = (?)", (item,)).fetchone()[0]
-		tot_fat += c.execute("SELECT fat FROM product WHERE name = (?)", (item,)).fetchone()[0]
-		tot_carb += c.execute("SELECT carbohydrates FROM product WHERE name = (?)", (item,)).fetchone()[0]
-		tot_prot += c.execute("SELECT protein FROM product WHERE name = (?)", (item,)).fetchone()[0]
-		tot_chol += c.execute("SELECT cholesterol FROM product WHERE name = (?)", (item,)).fetchone()[0]
+		cal = c.execute("SELECT calories FROM product WHERE name = (?)", (item,)).fetchone()[0]
+		fat = c.execute("SELECT fat FROM product WHERE name = (?)", (item,)).fetchone()[0]
+		carb = c.execute("SELECT carbohydrates FROM product WHERE name = (?)", (item,)).fetchone()[0]
+		prot = c.execute("SELECT protein FROM product WHERE name = (?)", (item,)).fetchone()[0]
+		chol = c.execute("SELECT cholesterol FROM product WHERE name = (?)", (item,)).fetchone()[0]
+		if cal != None: tot_cal += cal
+		if fat != None:  tot_fat += fat
+		if carb != None: tot_carb += carb
+		if prot != None: tot_prot += prot 
+		if chol != None: tot_chol += chol 
 
 	return tot_cal, tot_fat, tot_carb, tot_prot, tot_chol
 
 
 def createBarChart(cart):
-
-	cart = ['Lemon Rice, 16 oz', 'Baby Spinach, 5 oz', "Mary's Free Range Chicken Organic Ground Chicken, 16 oz", "Asparagus, 1 lb", 'Lemon Rice, 16 oz']
+	if cart == []:
+		return None
 
 	data = {'calories': [], 'fat': [], 'carbohydrates': [], 'protein': [], 'cholesterol': [],
 			'avg_calories': [], 'avg_fat': [], 'avg_carbohydrates': [], 'avg_protein': [], 'avg_cholesterol': [], 'subcategory': []}
@@ -68,19 +77,10 @@ def createBarChart(cart):
 
 
 	df = pd.DataFrame(data = data, index = ind)
+	imgs = []
 
-	if len(cart) % 2 != 0:
-		rows = len(cart)//2 + 1
-
-	rows = len(cart)//2
-
-	fig, ax = plt.subplots(nrows = rows, ncols = len(cart)//rows)
-	axn = ax.flatten()
-	i = 0
-
-	for axes in axn:
-		if i >= len(cart):
-			break
+	for i in range(len(cart)):
+		fig, ax = plt.subplots()
 
 		N = 5
 		actual_vals = df.iloc[i, 0:5].values
@@ -88,16 +88,18 @@ def createBarChart(cart):
 
 		ind = np.arange(N)
 		width = 0.3
-		p1 = axes.bar(ind, actual_vals, width)
-		p2 = axes.bar(ind+width, avg_vals, width)
+		p1 = ax.bar(ind, actual_vals, width)
+		p2 = ax.bar(ind+width, avg_vals, width)
 
-		axes.set_title('Nutrition Information: {} versus {} products'.format(df.index[i], df.iloc[i, 10]), fontsize = 12)
+		ax.set_title('Nutrition Information: {} versus {} products'.format(df.index[i], df.iloc[i, 10]), fontsize = 10)
 
-		axes.set_xticks(ind+width / 2)
-		axes.set_xticklabels(('Calories', 'Fat', 'Carbohydrates', 'Protein', 'Cholesterol'))
+		ax.set_xticks(ind+width / 2)
+		ax.set_xticklabels(('Calories', 'Fat', 'Carbohydrates', 'Protein', 'Cholesterol'))
 
-		axes.legend((p1[0], p2[0]), ('{}'.format(df.index[i]), 'Average for {}'.format(df.iloc[i, 10])))
+		ax.legend((p1[0], p2[0]), ('{}'.format(df.index[i]), 'Average for {}'.format(df.iloc[i, 10])))
 
 		i+=1
 
-	plt.show()
+		plt.savefig('static/bar{}.png'.format(i))
+
+	return imgs
