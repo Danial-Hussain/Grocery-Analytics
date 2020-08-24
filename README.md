@@ -1,5 +1,4 @@
 # Grocery-Analytics :green_apple:
-## Demo
 <h1 align=center><a href="https://www.youtube.com/watch?v=S4FLUp52ATQ&feature=youtu.be">Check out the Demo Video!</a></h1>
 
 ## Project Structure
