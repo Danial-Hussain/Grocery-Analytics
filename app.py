@@ -72,11 +72,11 @@ def process():
 		query = db.session.query(Product).filter_by(name = product_name).one()
 		product = {'name': query.name,
 							 'serving': query.serving,
-							 'calories': str(float(query.calories)),
-							 'fat': str(float(query.fat)),
-							 'carbohydrates': str(float(query.carbohydrates)),
-							 'protein': str(float(query.protein)),
-							 'cholesterol': str(float(query.cholesterol))}
+							 'calories': str(query.calories),
+							 'fat': str(query.fat),
+							 'carbohydrates': str(query.carbohydrates),
+							 'protein': str(query.protein),
+							 'cholesterol': str(query.cholesterol)}
 		return product
 	except:
 		return jsonify({'name': "ERROR"})
