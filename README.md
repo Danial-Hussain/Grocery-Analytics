@@ -14,6 +14,7 @@ This project allowed me to grasp a better understanding of two key concepts the 
 ## Future Considerations
 1. Improve the data visualizations: I choose to use the matplotlib package to make visualizations for the "Your Cart" page but in the future I would like to use a more interactive plotting package. I would also like to provide more insights and graphs for the user.
 2. Explore the data: I used Tableau for some basic data exploration, but given more time, I would like to explore the dataset further.
+3. More features: I've recently become interested in recommender systems and I think adding a feature that recommends healthier products based on a person's grocery cart could be really beneficial.
 
 ## Want to try it out?
 Steps:
