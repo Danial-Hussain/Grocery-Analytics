@@ -1,6 +1,4 @@
-# WholeFoods-Analytics
-## What It Does
-
+# Grocery-Analytics :green_apple:
 ## Demo
 
 ## Project Structure
